@@ -8,17 +8,22 @@
 </head>
 <body>
         <form action="" method="post">
-            <p>{{form.username.label}} <br>
-                {{form.username(size=30)}}
+            <p>{{form.name.label}} <br>
+                {{form.name}}
             </p>
 
-            <input type="checkbox" id="check" name="check" value="agree">
-            <label for="check">Está seguro que desea eliminar este estudiante? Esta acción es irreversible</label><br>
+            <p>{{form.credits.label}} <br>
+                {{form.credits}}
+            </p>
+
+            <p>{{form.nota.label}} <br>
+                {{form.nota}}
+            </p>
 
             <p>{{form.submit}}</p>
         </form>
           
-          <a href="/admin">Volver</a>
+        <a href="/admin">Volver</a>
     <script src="script.js"></script>
 </body>
 </html>

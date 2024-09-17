@@ -2,13 +2,26 @@ from flask import Flask, render_template, url_for, redirect
 from forms import AñadirEstudianteForm, EliminarEstudianteForm, AñadirNotaForm, EliminarNotaForm
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'robtop'
+app.config['SECRET_KEY'] = 'keyultrasecreta'
 
+# este users es un ejemplo, hay que reemplazarlo
 users = {
         "rodrigo": {
             "name": "rodrigo",
             "password": "123",
-            "notas": [1, 2, 3]
+            "notas": [{
+                "name": "calculo",
+                "creditos": 3,
+                "nota": 4.3
+            }, {
+                "name": "fisica",
+                "creditos": 4,
+                "nota": 3.5
+            }, {
+                "name": "religion",
+                "creditos": 1,
+                "nota": 4.0
+            }]
         }
     }
 

@@ -10,20 +10,14 @@
     <main id="main">
         Esta es tu lista de estudiantes:
     
+        {% for user in users %}
         <ol>
             <li>
-                <p>Nombre: Rodrigo</p>
-                <p>Notas: [] </p>
-            </li>
-            <li>
-                <p>Nombre: Sofia</p>
-                <p>Notas: [] </p>
-            </li>
-            <li>
-                <p>Nombre: Manuel</p>
-                <p>Notas: [] </p>
+                <p>Nombre: {{users[user].name}}</p>
+                <p>Notas: {{users[user].notas}} </p>
             </li>
         </ol>
+        {% endfor %}
 
         <a href="/admin">Volver</a>
     </main>

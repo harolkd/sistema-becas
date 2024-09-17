@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <label for="name">Usuario:</label> <br>
+        <input type="text" id="name" name="name"> <br>
+
+        <label for="password">Contraseña:</label> <br>
+        <input type="password" id="password" name="password"> <br>
+
+        <button onclick="login()">Login</button>
+    </div>
+    <main id="main">
+        <h1>Bienvenido estudiante</h1>
+        Estas son tus notas:
+    
+        <ol>
+            <li>
+                <h3>Calculo</h3>
+                <p>Nota: 3</p>
+                <p>Creditos: 3 </p>
+            </li>
+            <li>
+                <h3>Fisica</h3>
+                <p>Nota: 5</p>
+                <p>Creditos: 4 </p>
+            </li>
+            <li>
+                <h3>Programacion</h3>
+                <p>Nota: 4</p>
+                <p>Creditos: 2 </p>
+            </li>
+        </ol>
+    
+        <h1 id="beca">Felicidades !! fuiste elegido para una beca</h1>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

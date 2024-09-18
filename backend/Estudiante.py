@@ -22,3 +22,16 @@ class Estudiante:
     def beca(self, promedio):
         resultado_beca = verificar_beca(self.usuario, promedio)
         print(resultado_beca)
+
+
+
+
+        if user["name"] == name:
+            print("name yes")
+            if user["password"] == password:
+                print("password yes")
+                return True
+            else:
+                return False
+        else:
+            return False

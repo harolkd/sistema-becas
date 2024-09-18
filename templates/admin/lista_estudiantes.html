@@ -13,8 +13,8 @@
         {% for user in users %}
         <ol>
             <li>
-                <p>Nombre: {{users[user].name}}</p>
-                <p>Notas: {{users[user].notas}} </p>
+                <p>Nombre: {{user["name"]}}</p>
+                <p>Notas: {{user["notas"]}} </p>
             </li>
         </ol>
         {% endfor %}

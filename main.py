@@ -1,37 +1,26 @@
 from flask import Flask, render_template, url_for, redirect
 from forms import AñadirEstudianteForm, EliminarEstudianteForm, AñadirNotaForm, EliminarNotaForm, LoginForm
+from backend.users import login_user, users_dict
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'keyultrasecreta'
 
 # este users es un ejemplo, hay que reemplazarlo
-users = {
-        "rodrigo": {
-            "name": "rodrigo",
-            "password": "123",
-            "notas": [{
-                "name": "calculo",
-                "creditos": 3,
-                "nota": 4.3
-            }, {
-                "name": "fisica",
-                "creditos": 4,
-                "nota": 3.5
-            }, {
-                "name": "religion",
-                "creditos": 1,
-                "nota": 4.0
-            }]
-        }
-    }
+
 @app.route("/", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.is_submitted():
-        if form.username.data == 'admin':
-            return redirect(url_for('admin'))
+        name = str(form.username.data)
+        pwd = str(form.password.data)
+
+        if(login_user(name, pwd)):
+            if name == 'admin':
+                return redirect(url_for('admin'))
+            else:
+                return redirect(url_for('estudiante'))
         else:
-            return redirect(url_for('estudiante'))
+            pass
     return render_template('login.html', form=form)
 
 @app.route("/estudiante")
@@ -84,7 +73,7 @@ def eliminar_nota():
 
 @app.route("/lista_estudiantes")
 def lista_estudiantes():
-    return render_template('admin/lista_estudiantes.html', users=users)
+    return render_template('admin/lista_estudiantes.html', users=users_dict)
 
 
 

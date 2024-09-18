@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <title>Dashboard</title>
 </head>
 <body>
     <main id="main">
-        Bienvenido administrador, elije la operación que deseas realizar <br>
+        Bienvenido administrador, elige la operación que deseas realizar <br><br>
 
         <a href="/añadir_estudiante">Añadir Estudiante</a> <br>
         <a href="/lista_estudiantes">Ver Lista de Estudiantes</a> <br>

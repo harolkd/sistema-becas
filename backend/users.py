@@ -50,15 +50,16 @@ def eliminar_notas(username: str, name: str):
             j = -1
             for nota in nuevas_notas:
                 j += 1
-                if nota == name:
+                if nota["name"] == name:
                     nuevas_notas.pop(j)
-            print(nuevas_notas)
 
             nuevo_usuario = {
                 "name": user["name"],
                 "password": user["password"],
                 "notas": nuevas_notas
             }
+
+            print(nuevo_usuario)
 
             eliminar_usuario(user["name"])
             agregar_usuario(nuevo_usuario)

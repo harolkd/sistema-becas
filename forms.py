@@ -20,3 +20,8 @@ class EliminarNotaForm(FlaskForm):
     username = StringField('Usuario')
     name = StringField('Nombre')
     submit = SubmitField('Eliminar')
+
+class LoginForm(FlaskForm):
+    username = StringField('Usuario')
+    password = PasswordField('Contraseña')
+    submit = SubmitField('Iniciar Sesión')

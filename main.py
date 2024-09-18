@@ -1,5 +1,5 @@
 from flask import Flask, render_template, url_for, redirect
-from forms import AñadirEstudianteForm, EliminarEstudianteForm, AñadirNotaForm, EliminarNotaForm
+from forms import AñadirEstudianteForm, EliminarEstudianteForm, AñadirNotaForm, EliminarNotaForm, LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'keyultrasecreta'
@@ -24,10 +24,19 @@ users = {
             }]
         }
     }
+@app.route("/", methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.is_submitted():
+        if form.username.data == 'admin':
+            return redirect(url_for('admin'))
+        else:
+            return redirect(url_for('estudiante'))
+    return render_template('login.html', form=form)
 
-@app.route("/")
-def main():
-    return render_template('estudiante/index.html')
+@app.route("/estudiante")
+def estudiante():
+    return render_template('estudiante.html')
 
 @app.route("/admin")
 def admin():
@@ -41,7 +50,7 @@ def añadir_estudiante():
         # form.password.data
         # form.username.data
         return redirect(url_for('añadir_estudiante'))
-    return render_template('admin/añadir_estudiante/añadir_estudiante.html', form=form)
+    return render_template('admin/añadir_estudiante.html', form=form)
 
 @app.route("/añadir_nota", methods=['GET', 'POST'])
 def añadir_nota():
@@ -51,7 +60,7 @@ def añadir_nota():
         # form.password.data
         # form.username.data
         return redirect(url_for('añadir_nota'))
-    return render_template('admin/añadir_nota/añadir_nota.html', form=form)
+    return render_template('admin/añadir_nota.html', form=form)
 
 @app.route("/eliminar_estudiante", methods=['GET', 'POST'])
 def eliminar_estudiante():
@@ -61,7 +70,7 @@ def eliminar_estudiante():
         # form.password.data
         # form.username.data
         return redirect(url_for('eliminar_estudiante'))
-    return render_template('admin/eliminar_estudiante/eliminar_estudiante.html', form=form)
+    return render_template('admin/eliminar_estudiante.html', form=form)
 
 @app.route("/eliminar_nota", methods=['GET', 'POST'])
 def eliminar_nota():
@@ -71,10 +80,12 @@ def eliminar_nota():
         # form.password.data
         # form.username.data
         return redirect(url_for('eliminar_nota'))
-    return render_template('admin/eliminar_nota/eliminar_nota.html', form=form)
+    return render_template('admin/eliminar_nota.html', form=form)
 
 @app.route("/lista_estudiantes")
 def lista_estudiantes():
-    return render_template('admin/lista_estudiantes/lista_estudiantes.html', users=users)
+    return render_template('admin/lista_estudiantes.html', users=users)
+
+
 
 app.run(host='0.0.0.0', port=3030)

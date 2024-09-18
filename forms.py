@@ -12,7 +12,7 @@ class EliminarEstudianteForm(FlaskForm):
 
 class AñadirNotaForm(FlaskForm):
     name = StringField('Nombre')
-    credits = IntegerField('Creditos')
+    creditos = IntegerField('Creditos')
     nota = FloatField('Nota')
     submit = SubmitField('Añadir')
 

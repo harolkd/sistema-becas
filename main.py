@@ -56,13 +56,13 @@ def añadir_estudiante():
 def añadir_nota():
     form = AñadirNotaForm()
     if form.is_submitted():
-        credits = int(form.credits.data)
+        creditos = int(form.creditos.data)
         name = str(form.name.data)
         nota = float(form.nota.data)
 
         nueva_nota = {
             "name": name,
-            "credits": credits,
+            "creditos": creditos,
             "nota": nota
         }
 

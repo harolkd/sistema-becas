@@ -3,7 +3,13 @@ import json
 with open('backend/db.json', 'r') as data:
     users_dict = json.load(data)
 
-ultimo_usuario = "admin"
+def mostrar_notas(name):
+    i = -1
+    for user in users_dict:
+        i += 1
+        if user["name"] == name:
+            return user["notas"]
+    return
 
 def eliminar_usuario(name: str):
     i = -1
@@ -15,14 +21,13 @@ def eliminar_usuario(name: str):
 
 def agregar_usuario(usuario):
     users_dict.append(usuario)
-    ultimo_usuario = str(usuario["name"])
     return
 
 def agregar_nota(nota):
-    i = -1
+    i = 0
     for user in users_dict:
         i += 1
-        if user["name"] == ultimo_usuario:
+        if user["name"] == users_dict[-1]["name"]:
             nuevas_notas = user["notas"]
             nuevas_notas.append(nota)
 

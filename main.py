@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, redirect
 from forms import AñadirEstudianteForm, EliminarEstudianteForm, AñadirNotaForm, EliminarNotaForm, LoginForm
-from backend.Users import login_user, users_dict, eliminar_usuario, agregar_usuario, agregar_nota, eliminar_notas
+from backend.Users import login_user, users_dict, eliminar_usuario, agregar_usuario, agregar_nota, eliminar_notas, mostrar_notas
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'keyultrasecreta'
@@ -18,14 +18,18 @@ def login():
             if name == 'admin':
                 return redirect(url_for('admin'))
             else:
-                return redirect(url_for('estudiante'))
+                return estudiante(name)
         else:
             pass
     return render_template('login.html', form=form)
 
 @app.route("/estudiante")
-def estudiante():
-    return render_template('estudiante.html')
+def estudiante(name):
+    notas = mostrar_notas(name)
+    total = 0
+    for nota in notas:
+        total += nota["nota"] * nota["creditos"]
+    return render_template('estudiante.html', total=total, notas=notas)
 
 @app.route("/admin")
 def admin():

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, redirect
 from forms import AñadirEstudianteForm, EliminarEstudianteForm, AñadirNotaForm, EliminarNotaForm, LoginForm
-from backend.users import login_user, users_dict
+from backend.Users import login_user, users_dict, eliminar_usuario, agregar_usuario, agregar_nota, eliminar_notas
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'keyultrasecreta'
@@ -35,9 +35,16 @@ def admin():
 def añadir_estudiante():
     form = AñadirEstudianteForm()
     if form.is_submitted():
-        # logica
-        # form.password.data
-        # form.username.data
+        pwd = str(form.password.data)
+        name = str(form.username.data)
+
+        usuario = {
+            "name": name,
+            "password": pwd,
+            "notas": []
+        }
+
+        agregar_usuario(usuario)
         return redirect(url_for('añadir_estudiante'))
     return render_template('admin/añadir_estudiante.html', form=form)
 
@@ -45,9 +52,18 @@ def añadir_estudiante():
 def añadir_nota():
     form = AñadirNotaForm()
     if form.is_submitted():
-        # logica
-        # form.password.data
-        # form.username.data
+        credits = int(form.credits.data)
+        name = str(form.name.data)
+        nota = float(form.nota.data)
+
+        nueva_nota = {
+            "name": name,
+            "credits": credits,
+            "nota": nota
+        }
+
+        agregar_nota(nueva_nota)
+
         return redirect(url_for('añadir_nota'))
     return render_template('admin/añadir_nota.html', form=form)
 
@@ -55,9 +71,9 @@ def añadir_nota():
 def eliminar_estudiante():
     form = EliminarEstudianteForm()
     if form.is_submitted():
-        # logica
-        # form.password.data
-        # form.username.data
+        name = str(form.username.data)
+        eliminar_usuario(name)
+
         return redirect(url_for('eliminar_estudiante'))
     return render_template('admin/eliminar_estudiante.html', form=form)
 
@@ -65,9 +81,10 @@ def eliminar_estudiante():
 def eliminar_nota():
     form = EliminarNotaForm()
     if form.is_submitted():
-        # logica
-        # form.password.data
-        # form.username.data
+        name = str(form.name.data)
+        username = str(form.username.data)
+        
+        eliminar_notas(username, name)
         return redirect(url_for('eliminar_nota'))
     return render_template('admin/eliminar_nota.html', form=form)
 
